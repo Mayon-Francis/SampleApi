@@ -5,6 +5,7 @@
 
 .env
 .env.*
+out/
 
 # User-specific files
 *.rsuser
