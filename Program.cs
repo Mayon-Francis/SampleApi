@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using SampleApi.Services;
 using SampleApi.Helpers;
 using SampleApi.Services.Interfaces;
+
+DotNetEnv.Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
