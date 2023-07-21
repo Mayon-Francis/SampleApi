@@ -40,5 +40,55 @@ namespace SampleApi.Controllers
             await dbContext.SaveChangesAsync();
             return CreatedAtRoute("GetContacts", new { id = contact.Id }, contact);
         }
+
+        [HttpPut("{id:guid}", Name = "UpdateContact")]
+        public async Task<ActionResult<Contact>> UpdateContact([FromRoute] Guid id, UpdateContactDto updateContactReq)
+        {
+            Contact? contact = await dbContext.Contacts.FindAsync(id);
+            if (contact == null)
+            {
+                return NotFound("Contact not found");
+            }
+
+            contact.FullName = updateContactReq.FullName;
+            contact.Email = updateContactReq.Email;
+            contact.Phone = updateContactReq.Phone;
+            contact.Address = updateContactReq.Address;
+
+            await dbContext.SaveChangesAsync();
+
+            return Ok(contact);
+        }
+
+        [HttpGet("{id:guid}", Name = "GetSingleContact")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Contact))]
+        public async Task<ActionResult<Contact>> GetSingleContact([FromRoute] Guid id)
+        {
+            Contact? contact = await dbContext.Contacts.FindAsync(id);
+
+            if (contact == null)
+            {
+                return NotFound("Contact not found");
+            }
+            else
+            {
+                return Ok(contact);
+            }
+        }
+
+        [HttpDelete("{id:guid}", Name = "DeleteContact")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteContact([FromRoute] Guid id) {
+            Contact? contact = await dbContext.Contacts.FindAsync(id);
+            if (contact == null) {
+                return NotFound("Contact not found");
+            }
+
+            dbContext.Contacts.Remove(contact);
+            await dbContext.SaveChangesAsync();
+    
+            return Ok(contact);
+        }
     }
 }
