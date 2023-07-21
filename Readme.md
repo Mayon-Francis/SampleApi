@@ -5,7 +5,7 @@ This is a sample Api written using C# ASP.net WebApi
 - Create `.env` file with DB connection data according to `.env.example` file
 - install dotnet ef cli tool `dotnet tool install --global dotnet-ef`
 - cd to `SampleApi` folder and run
-    - Update Migration folder if needed with `dotnet ef migrations add InitialCreate`
+    - Update Migration folder if needed with `dotnet ef migrations add <Descriptive_name>`
     - Run The migrations with `dotnet ef database update`
 
 ### To run locally
