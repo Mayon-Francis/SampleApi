@@ -3,6 +3,7 @@ WORKDIR /App
 
 # Copy everything
 COPY ./SampleApi ./
+COPY ./.env ./
 # Restore as distinct layers
 RUN dotnet restore
 # Build and publish a release
