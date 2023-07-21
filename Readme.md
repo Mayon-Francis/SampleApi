@@ -16,4 +16,5 @@ Note: the Database will need to be started separately
 
 ### To run via docker compose
 Note: this includes a postgres db alongside
-- Run `docker compose up --build`
+- Dev: `docker compose -f docker-compose.dev.yml up --build`
+- Prod `docker compose up --build`
