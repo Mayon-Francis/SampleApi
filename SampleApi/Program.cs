@@ -30,11 +30,12 @@ var app = builder.Build();
 new StartupHelper(app.Services.GetRequiredService<IEnvironmentService>());
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
+    // Use swagger
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+// }
 
 app.UseHttpsRedirection();
 
